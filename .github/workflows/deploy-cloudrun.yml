@@ -34,8 +34,8 @@ jobs:
         with:
           token_format: 'access_token'
           access_token_lifetime: 300
-          workload_identity_provider: 'projects/294059432651/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
-          service_account: 'github-action-sa@saifuls-playground.iam.gserviceaccount.com'
+          workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
+          service_account: ${{ secrets.WIF_SERVICE_ACCOUNT }}
 
 
       - name: 'Set up Cloud SDK'
