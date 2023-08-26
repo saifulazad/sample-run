@@ -1,0 +1,21 @@
+steps:
+  # Docker Build
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t',
+           'us-central1-docker.pkg.dev/saifuls-playground/python-app/flask-app',
+           '.']
+
+  # Docker Push
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push',
+           'us-central1-docker.pkg.dev/saifuls-playground/python-app/flask-app']
+
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: [
+      "beta",
+      "run",
+      "deploy",
+      "flask-app",
+      "--image=us-central1-docker.pkg.dev/saifuls-playground/python-app/flask-app",
+      "--region=us-central1",
+      "--allow-unauthenticated"]
